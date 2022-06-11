@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import cors from "cors";
 import session from "express-session";
+import passport from "passport";
 import routes from "../routers";
 
 export function createApp(): Express {
@@ -26,7 +27,11 @@ export function createApp(): Express {
                 maxAge: 600000 * 60 * 24 * 7,
             }
         })
-    )
+    );
+
+    // Enable Passport
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     app.use("/api", routes);
     return app;
