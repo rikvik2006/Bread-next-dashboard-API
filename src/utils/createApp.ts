@@ -3,6 +3,7 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import routes from "../routers";
+require("../strategies/discord");
 
 export function createApp(): Express {
     const app = express();
@@ -22,7 +23,7 @@ export function createApp(): Express {
         session({
             secret: "ASDFKASDLKFJASDFWEROQDFGGKLSASD",
             resave: false,
-            saveUninitialized: false, 
+            saveUninitialized: false,
             cookie: {
                 maxAge: 600000 * 60 * 24 * 7,
             }

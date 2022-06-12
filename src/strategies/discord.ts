@@ -1,5 +1,6 @@
 import passport from "passport";
 import { Profile, Strategy } from "passport-discord";
+import { VerifyCallback } from "passport-oauth2";
 
 passport.use(
     new Strategy(
@@ -9,7 +10,7 @@ passport.use(
             callbackURL: process.env.DISCORD_CALLBACK_URL,
             scope: ["identify", "email", "guilds"],
         },
-        async (accesToken: string, refreshToken: string, profile: Profile) => {
+        async (accesToken: string, refreshToken: string, profile: Profile, done: VerifyCallback) => {
 
         }
     )
