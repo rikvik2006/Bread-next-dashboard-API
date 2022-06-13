@@ -4,6 +4,8 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import routes from "../routers";
+import store from "connect-mongo";
+
 config();
 require("../strategies/discord");
 
@@ -21,7 +23,7 @@ export function createApp(): Express {
             credentials: true,
         })
     );
-
+    // Enable Sessions
     app.use(
         session({
             secret: "ASDFKASDLKFJASDFWEROQDFGGKLSASD",
@@ -29,7 +31,10 @@ export function createApp(): Express {
             saveUninitialized: false,
             cookie: {
                 maxAge: 600000 * 60 * 24 * 7,
-            }
+            },
+            store: store.create({
+                mongoUrl: process.env.MONGODB_URI
+            }),
         })
     );
 
