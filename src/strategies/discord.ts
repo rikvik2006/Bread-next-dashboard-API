@@ -11,7 +11,8 @@ passport.use(
             scope: ["identify", "email", "guilds"],
         },
         async (accesToken: string, refreshToken: string, profile: Profile, done: VerifyCallback) => {
-
+            console.log(accesToken, refreshToken);
+            console.log(profile);
         }
     )
 )
