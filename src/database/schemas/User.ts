@@ -1,9 +1,10 @@
-import mongoose, { mongo, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-interface User {
-    discordId: string,
-    accessToken: string,
-    refreshToken: string,
+export interface User {
+    id: string;
+    discordId: string;
+    accessToken: string;
+    refreshToken: string;
 }
 
 const UserSchema = new Schema<User>({
