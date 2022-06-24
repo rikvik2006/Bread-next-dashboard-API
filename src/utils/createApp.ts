@@ -3,7 +3,7 @@ import express, { Express } from "express";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
-import routes from "../routers";
+import routes from "../routes";
 import store from "connect-mongo";
 
 config();
@@ -41,6 +41,8 @@ export function createApp(): Express {
     // Enable Passport
     app.use(passport.initialize());
     app.use(passport.session());
+
+    app.use((req, res, next) => setTimeout(() => next(), 1000));
 
     app.use("/api", routes);
     return app;
